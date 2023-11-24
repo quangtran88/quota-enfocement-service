@@ -16,9 +16,9 @@ import { Quota, QuotaTransaction, QuotaTransactionAction, UploadRequest, UploadR
 const QUOTA_ENFORCEMENT_RESULT_QUEUE = "quota_enforcement_result";
 
 type QuotaEnforcementResult = {
-  upload_id: string;
+  uploadId: string;
   status: "SUCCESS" | "FAILED";
-  failed_reason?: string;
+  failedReason?: string;
 };
 
 @injectable()
@@ -80,9 +80,9 @@ export class QuotaEnforcementService implements IQuotaEnforcementService {
       await this.uploadRequestRepository.update(uploadRequest);
 
       await this.queueUtil.publish<QuotaEnforcementResult>(QUOTA_ENFORCEMENT_RESULT_QUEUE, {
-        upload_id: uploadRequest.uploadId,
+        uploadId: uploadRequest.uploadId,
         status: "FAILED",
-        failed_reason: reason,
+        failedReason: reason,
       });
     });
   }
@@ -106,7 +106,7 @@ export class QuotaEnforcementService implements IQuotaEnforcementService {
       await this.quotaTransactionRepository.insert(quotaTransaction);
 
       await this.queueUtil.publish<QuotaEnforcementResult>(QUOTA_ENFORCEMENT_RESULT_QUEUE, {
-        upload_id: uploadRequest.uploadId,
+        uploadId: uploadRequest.uploadId,
         status: "SUCCESS",
       });
     });

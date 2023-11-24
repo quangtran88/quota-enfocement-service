@@ -7,7 +7,8 @@ export function setupSQSConsumer(container: Container) {
   const quotaEnforcementService = container.get<IQuotaEnforcementService>(QUOTA_ENFORCEMENT_SERVICE);
 
   const consumer = Consumer.create({
-    queueUrl: "https://locahost:4566/000000000000/upload-request",
+    queueUrl: "http://localhost:4566/000000000000/upload-request",
+    region: "ap-southeast-1",
     handleMessage: async (message) => {
       if (message.Body) {
         const body = JSON.parse(message.Body);

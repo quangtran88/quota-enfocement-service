@@ -80,9 +80,7 @@ describe("QuotaEnforcementService", () => {
       });
 
       it("should publish message with existed upload request", async () => {
-        expect(queueUtil.publish.args).toMatchObject([
-          ["quota_enforcement_result", { upload_id: "EXISTED_UPLOAD_ID" }],
-        ]);
+        expect(queueUtil.publish.args).toMatchObject([["quota_enforcement_result", { uploadId: "EXISTED_UPLOAD_ID" }]]);
       });
     });
 
@@ -142,7 +140,7 @@ describe("QuotaEnforcementService", () => {
       });
 
       it("should publish message with new upload request", async () => {
-        expect(queueUtil.publish.args).toMatchObject([["quota_enforcement_result", { upload_id: "NEW_UPLOAD_ID" }]]);
+        expect(queueUtil.publish.args).toMatchObject([["quota_enforcement_result", { uploadId: "NEW_UPLOAD_ID" }]]);
       });
     });
 
@@ -220,7 +218,7 @@ describe("QuotaEnforcementService", () => {
 
       it('should publish message with status = "FAILED"', async () => {
         expect(queueUtil.publish.args).toEqual([
-          ["quota_enforcement_result", { failed_reason: "quota_exceeded", status: "FAILED", upload_id: "UPLOAD_ID" }],
+          ["quota_enforcement_result", { failedReason: "quota_exceeded", status: "FAILED", uploadId: "UPLOAD_ID" }],
         ]);
       });
     });
@@ -250,7 +248,7 @@ describe("QuotaEnforcementService", () => {
 
       it('should publish message with status = "SUCCESS"', async () => {
         expect(queueUtil.publish.args).toEqual([
-          ["quota_enforcement_result", { status: "SUCCESS", upload_id: "UPLOAD_ID" }],
+          ["quota_enforcement_result", { status: "SUCCESS", uploadId: "UPLOAD_ID" }],
         ]);
       });
     });

@@ -28,8 +28,11 @@
     "inversify": "^6.0.2",
     "reflect-metadata": "^0.1.13",
     "sqlite3": "^5.1.6",
-    "sqs-consumer": "^7.4.0",
+    "sqs-consumer": "^5.8.0",
     "typeorm": "^0.3.17",
     "zod": "^3.22.4"
+  },
+  "engines": {
+    "node": ">=18.16.0"
   }
 }
