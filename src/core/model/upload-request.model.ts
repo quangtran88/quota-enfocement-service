@@ -19,4 +19,11 @@ export class UploadRequest {
 
   @Column()
   size: number;
+
+  constructor(uploadId: string, owner: string, size: number) {
+    this.uploadId = uploadId;
+    this.owner = owner;
+    this.size = size;
+    this.status = UploadRequestStatus.NEW;
+  }
 }

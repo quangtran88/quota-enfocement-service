@@ -1,4 +1,4 @@
-import { QuotaOffer } from "../../core/model";
+import { QuotaOffer } from "../../../core/model";
 
 export const QUOTA_OFFER_REPOSITORY = Symbol("QUOTA_OFFER_REPOSITORY");
 

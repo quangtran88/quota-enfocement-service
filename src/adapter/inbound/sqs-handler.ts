@@ -12,7 +12,7 @@ export function setupSQSConsumer(container: Container) {
       if (message.Body) {
         const body = JSON.parse(message.Body);
         const dto = UploadRequestPayloadSchema.parse(body);
-        await quotaEnforcementService.verifyUploadRequest(dto);
+        await quotaEnforcementService.handleUploadRequest(dto);
       }
     },
   });

@@ -1,4 +1,4 @@
-import { Quota } from "../../core/model";
+import { Quota } from "../../../core/model";
 
 export const QUOTA_REPOSITORY = Symbol("QUOTA_REPOSITORY");
 

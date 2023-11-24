@@ -1,4 +1,4 @@
-import { IUploadRequestRepository } from "../../../port/outbound";
+import { IUploadRequestRepository } from "../../../port/outbound/repository";
 import { UploadRequest } from "../../../core/model";
 import { inject, injectable } from "inversify";
 import { DataSource, Repository } from "typeorm";
@@ -11,15 +11,16 @@ export class UploadRequestRepository implements IUploadRequestRepository {
     this.repo = dataSource.getRepository(UploadRequest);
   }
 
-  insert(user: Omit<UploadRequest, "id">): Promise<UploadRequest> {
-    return this.repo.save(user);
+  insert(model: Omit<UploadRequest, "id">): Promise<UploadRequest> {
+    const entity = this.repo.create(model);
+    return this.repo.save(entity);
   }
 
   findById(id: string): Promise<UploadRequest | null> {
     return this.repo.findOneBy({ uploadId: id });
   }
 
-  update(user: UploadRequest): Promise<UploadRequest> {
-    return this.repo.save(user);
+  update(model: UploadRequest): Promise<UploadRequest> {
+    return this.repo.save(model);
   }
 }

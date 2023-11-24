@@ -1,4 +1,4 @@
-import { IQuotaOfferRepository } from "../../../port/outbound";
+import { IQuotaOfferRepository } from "../../../port/outbound/repository";
 import { QuotaOffer } from "../../../core/model";
 import { inject, injectable } from "inversify";
 import { DataSource, Repository } from "typeorm";

@@ -17,5 +17,11 @@ export class Quota {
 
   @Column()
   currentUsage: number;
-}
 
+  constructor(owner: string, offerId: number, limit: number) {
+    this.owner = owner;
+    this.offerId = offerId;
+    this.limit = limit;
+    this.currentUsage = 0;
+  }
+}

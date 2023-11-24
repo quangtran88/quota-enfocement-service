@@ -1,4 +1,4 @@
-import { IQuotaTransactionRepository } from "../../../port/outbound";
+import { IQuotaTransactionRepository } from "../../../port/outbound/repository";
 import { QuotaTransaction } from "../../../core/model";
 import { inject, injectable } from "inversify";
 import { DataSource, Repository } from "typeorm";
@@ -11,7 +11,7 @@ export class QuotaTransactionRepository implements IQuotaTransactionRepository {
     this.repo = dataSource.getRepository(QuotaTransaction);
   }
 
-  insert(user: Omit<QuotaTransaction, "id">): Promise<QuotaTransaction> {
-    return this.repo.save(user);
+  insert(model: Omit<QuotaTransaction, "id">): Promise<QuotaTransaction> {
+    return this.repo.save(model);
   }
 }

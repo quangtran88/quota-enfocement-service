@@ -1,4 +1,4 @@
-import { UploadRequest } from "../../core/model";
+import { UploadRequest } from "../../../core/model";
 
 export const UPLOAD_REQUEST_REPOSITORY = Symbol("UPLOAD_REQUEST_REPOSITORY");
 

@@ -1,10 +1,10 @@
 export const QUOTA_ENFORCEMENT_SERVICE = Symbol("QUOTA_ENFORCEMENT_SERVICE");
 
 export interface IQuotaEnforcementService {
-  verifyUploadRequest(cmd: VerifyUploadRequestCmd): Promise<void>;
+  handleUploadRequest(cmd: HandleUploadRequestCmd): Promise<void>;
 }
 
-export type VerifyUploadRequestCmd = {
+export type HandleUploadRequestCmd = {
   uploadId: string;
   owner: string;
   totalSize: number;

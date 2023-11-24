@@ -1,4 +1,4 @@
-import { IQuotaRepository } from "../../../port/outbound";
+import { IQuotaRepository } from "../../../port/outbound/repository";
 import { Quota } from "../../../core/model";
 import { inject, injectable } from "inversify";
 import { DataSource, Repository } from "typeorm";
@@ -15,11 +15,11 @@ export class QuotaRepository implements IQuotaRepository {
     return this.repo.findOneBy({ owner });
   }
 
-  insert(user: Omit<Quota, "id">): Promise<Quota> {
-    return this.repo.save(user);
+  insert(model: Omit<Quota, "id">): Promise<Quota> {
+    return this.repo.save(model);
   }
 
-  update(user: Quota): Promise<Quota> {
-    return this.repo.save(user);
+  update(model: Quota): Promise<Quota> {
+    return this.repo.save(model);
   }
 }
