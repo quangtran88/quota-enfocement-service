@@ -1,33 +1,17 @@
-import { IQuotaRepository } from "../../../port/outbound";
-import { Quota } from "../../../core/model";
+import { IQuotaOfferRepository } from "../../../port/outbound";
+import { QuotaOffer } from "../../../core/model";
 import { inject, injectable } from "inversify";
-import { DataSource, FindOptionsWhere, Not, Repository } from "typeorm";
+import { DataSource, Repository } from "typeorm";
 
 @injectable()
-export class QuotaRepository implements IQuotaRepository {
-  private repo: Repository<Quota>;
+export class QuotaOfferRepository implements IQuotaOfferRepository {
+  private repo: Repository<QuotaOffer>;
 
   constructor(@inject(DataSource) dataSource: DataSource) {
-    this.repo = dataSource.getRepository(Quota);
+    this.repo = dataSource.getRepository(QuotaOffer);
   }
 
-  findAll(): Promise<Quota[]> {
-    return this.repo.find();
-  }
-
-  insert(user: Omit<Quota, "id">): Promise<Quota> {
-    return this.repo.save(user);
-  }
-
-  async remove(id: number): Promise<void> {
-    await this.repo.delete({ id });
-  }
-
-  findById(id: number): Promise<Quota | null> {
-    return this.repo.findOneBy({ id });
-  }
-
-  update(user: Quota): Promise<Quota> {
-    return this.repo.save(user);
+  findActiveOffer(): Promise<QuotaOffer | null> {
+    return this.repo.findOneBy({ is_active: true });
   }
 }

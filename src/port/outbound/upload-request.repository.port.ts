@@ -1,12 +1,9 @@
-import { Quota } from "../../core/model";
+import { UploadRequest } from "../../core/model";
 
-export const QUOTA_REPOSITORY = Symbol("QUOTA_REPOSITORY");
+export const UPLOAD_REQUEST_REPOSITORY = Symbol("UPLOAD_REQUEST_REPOSITORY");
 
-export interface IQuotaRepository {
-  findAll(): Promise<Quota[]>;
-  findById(id: number): Promise<Quota | null>;
-  findByEmail(email: string, excludedId?: number): Promise<Quota | null>;
-  insert(user: Omit<Quota, "id">): Promise<Quota>;
-  update(user: Quota): Promise<Quota>;
-  remove(id: number): Promise<void>;
+export interface IUploadRequestRepository {
+  findById(id: string): Promise<UploadRequest | null>;
+  insert(user: Omit<UploadRequest, "id">): Promise<UploadRequest>;
+  update(user: UploadRequest): Promise<UploadRequest>;
 }

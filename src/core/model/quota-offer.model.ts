@@ -1,23 +1,17 @@
-import {Column, Entity, PrimaryColumn} from "typeorm";
-
-export enum UploadRequestStatus {
-  NEW="NEW",
-  SUCCESS="SUCCESS",
-  FAILED="FAILED"
-}
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class UploadRequest {
-  @PrimaryColumn()
-  uploadId: number;
-  
+export class QuotaOffer {
+  @PrimaryGeneratedColumn()
+  id: number;
+
   @Column()
-  owner: string
-  
-  @Column({enum: UploadRequestStatus})
-  status: UploadRequestStatus
-  
-  @Column({type: 'bigint'})
-  size: number
+  limit: number;
+
+  @Column()
+  is_active: boolean;
+
+  @Column()
+  description: string;
 }
 

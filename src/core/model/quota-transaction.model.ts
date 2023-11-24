@@ -1,8 +1,13 @@
-import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
+
+export enum QuotaTransactionAction {
+  INCREASE = "INC",
+  DECREASE = "DEC"
+}
 
 @Entity()
 @Index(["owner"])
-export class Quota {
+export class QuotaTransaction {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -10,12 +15,21 @@ export class Quota {
   owner: string;
 
   @Column()
-  offerId: number;
+  quotaId: number;
+
+  @Column({ enum: QuotaTransactionAction })
+  action: QuotaTransactionAction;
 
   @Column()
-  limit: number;
+  uploadId: number;
+
+  @Column()
+  size: number;
 
   @Column()
   currentUsage: number;
+  
+  @CreateDateColumn()
+  createdAt: Date;
 }
 

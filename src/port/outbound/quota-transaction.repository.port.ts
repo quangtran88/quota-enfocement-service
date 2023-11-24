@@ -1,12 +1,7 @@
-import { Quota } from "../../core/model";
+import { QuotaTransaction } from "../../core/model";
 
-export const QUOTA_REPOSITORY = Symbol("QUOTA_REPOSITORY");
+export const QUOTA_TRANSACTION_REPOSITORY = Symbol("QUOTA_TRANSACTION_REPOSITORY");
 
-export interface IQuotaRepository {
-  findAll(): Promise<Quota[]>;
-  findById(id: number): Promise<Quota | null>;
-  findByEmail(email: string, excludedId?: number): Promise<Quota | null>;
-  insert(user: Omit<Quota, "id">): Promise<Quota>;
-  update(user: Quota): Promise<Quota>;
-  remove(id: number): Promise<void>;
+export interface IQuotaTransactionRepository {
+  insert(user: Omit<QuotaTransaction, "id">): Promise<QuotaTransaction>;
 }

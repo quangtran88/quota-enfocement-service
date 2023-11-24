@@ -1,17 +1,21 @@
-import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class QuotaOffer {
+@Index(["owner"])
+export class Quota {
   @PrimaryGeneratedColumn()
   id: number;
-  
+
   @Column()
-  limit: number
-  
+  owner: string;
+
   @Column()
-  is_active: boolean
-  
+  offerId: number;
+
   @Column()
-  description: string
+  limit: number;
+
+  @Column()
+  currentUsage: number;
 }
 

@@ -1,11 +1,11 @@
-import { User } from "../../core/model";
+export const QUOTA_ENFORCEMENT_SERVICE = Symbol("QUOTA_ENFORCEMENT_SERVICE");
 
-export const USER_SERVICE = Symbol("USER_SERVICE");
-
-export interface IUserService {
-  getAllUsers(): Promise<User[]>;
-  getUserDetail(id: number): Promise<User>;
-  createUser(user: Omit<User, "id">): Promise<User>;
-  updateUser(id: number, user: Partial<Omit<User, "id">>): Promise<User>;
-  deleteUser(id: number): Promise<void>;
+export interface IQuotaEnforcementService {
+  verifyUploadRequest(cmd: VerifyUploadRequestCmd): Promise<void>;
 }
+
+export type VerifyUploadRequestCmd = {
+  uploadId: string;
+  owner: string;
+  totalSize: number;
+};
